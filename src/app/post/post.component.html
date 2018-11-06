@@ -1,0 +1,55 @@
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <h1 class="header center orange-text">Posts</h1>
+
+        <div class="row center">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- USER ID Column -->
+                    <ng-container matColumnDef="userId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header width="100"> User #</th>
+                        <td mat-cell *matCellDef="let row"> {{row.userId}}</td>
+                    </ng-container>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> #</th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}}</td>
+                    </ng-container>
+
+                    <!-- TITLE Column -->
+                    <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+                        <td mat-cell *matCellDef="let row"> {{row.title}}</td>
+                    </ng-container>
+
+                    <!-- BODY Column -->
+                    <ng-container matColumnDef="body">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Body</th>
+                        <td mat-cell *matCellDef="let row"> {{row.body}}</td>
+                    </ng-container>
+
+                    <!-- ACTION BUTTONS Column -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef width="115">
+                            <a [routerLink]="['manage', 0]" class="btn-floating waves-effect waves-light white-text add-post-btn" title="Add Post"><i class="material-icons">add</i></a>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <a [routerLink]="['manage', row.id]" class="btn-floating waves-effect waves-light white-text edit-post-bnt" title="Edit Post"><i class="material-icons">edit</i></a>
+                            <button class="btn-floating waves-effect waves-light white-text delete-post-btn" title="Delete Post" (click)="deletePost(row.id)"><i class="material-icons">delete</i></button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
+
+
